@@ -15,23 +15,20 @@ def get_similarity_matrix():
     items = pd.concat([items, s], axis=1)
     items.drop(["genres"], inplace=True, axis=1)
     items.drop(["authors"], inplace=True, axis=1)
-    titles = items["title"]
+    titles = items["id"]
     items.drop(["title"], inplace=True, axis=1)
     items.drop(["year"], inplace=True, axis=1)
     items.set_index(items.columns[0], inplace=True)
     titles.to_csv('titles.csv')
-
     TestUISparseData = sparse.csr_matrix(items.values)
     m_m_similarity = cosine_similarity(TestUISparseData.T, dense_output=False)
-
     book_ids = np.unique(m_m_similarity.nonzero())
-
     similar_book_dict = dict()
     for book in book_ids:
         smlr = np.argsort(-m_m_similarity[book].toarray().ravel())[1:10]
         similar_book_dict[book] = smlr
     np.save('similar_book_dict.npy', similar_book_dict)
-
+get_similarity_matrix()
 
 def get_user_user_recommendation():
     import pandas as pd
@@ -67,8 +64,8 @@ def get_user_user_recommendation():
         return populars
 
     populars = get_popular(interactions, 10)
-    df = pd.DataFrame(data={"col1": populars})
-    df.to_csv("top_10_popular.csv", sep=',', index=False)
+    df = pd.DataFrame(data={"top_10_vids": populars})
+    df.to_csv("top_10_popular.csv")
 
     dropped_users = []
     n_interactions = 4
