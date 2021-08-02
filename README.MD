@@ -1,4 +1,4 @@
-# OpenCV for face recognition
+# Recommendation system
 Used libraries:
 
  **Pandas**
