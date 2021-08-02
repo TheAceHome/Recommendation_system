@@ -63,7 +63,7 @@ def update_all():
 total_preds = pd.read_csv('total_preds.csv')
 similar_book_dict = np.load('similar_book_dict.npy',allow_pickle='TRUE').item()
 titles = pd.read_csv('titles.csv')
-pogchamp = {}
+final_system = {}
 for index, row in total_preds.iterrows():
         for i in row.values[1:]:
             l=[]
@@ -72,7 +72,7 @@ for index, row in total_preds.iterrows():
             except:
                 top_10_popular = pd.read_csv('top_10_popular.csv')
                 l.extend(list(top_10_popular['top_10_vids'].values))
-        pogchamp[index] = set(l)
-print(pogchamp)
+        final_system[index] = set(l)
+print(final_system)
 
 
