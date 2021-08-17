@@ -15,7 +15,7 @@ Used libraries:
   
   ## Idea of recommendation system
   
-  Mine recommendation system has three steps 
+  This recommendation system has three steps 
   
 1. At first I will find similar users with nearest neighbours algorithm and create a dict. Key will be user and the 
 value is the list of the most rated (viewed) videos witch were liked by users similar to 'key' user.
